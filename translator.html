@@ -9,6 +9,7 @@
 
 <span>source text:</span>
 <textarea></textarea>
+<br/>
 
 <span>braces:</span>
 
@@ -38,14 +39,22 @@
 
 <input type="text" id="prefix" placeholder="prefix"/>
 <input type="text" id="prefix" placeholder="suffix"/>
+<br/>
+<br/>
 
+<span>delimiter:</span>
+<input type="text" id="prefix" placeholder="delimiter" value=", "/>
 <button>to DNCII</button>
+<br/>
 
+<p></p>
 
 <script>
   
   window.onload = () => {
     
+    const customBeginBrace = document.getElementById("other-begin");
+    const customEndBrace = document.getElementById("other-end");
     const selectBraces = document.getElementById("braces");
     const selectBase = document.getElementById("base");
     
@@ -53,14 +62,14 @@
       
       if (selectBraces.value === "other") {
         
-        document.getElementById("other-begin").style.display = "inline";
-        document.getElementById("other-end").style.display = "inline";
+        customBeginBrace.style.display = "inline";
+        customEndBrace.style.display = "inline";
       }
       
       else {
         
-        document.getElementById("other-begin").style.display = "none";
-        document.getElementById("other-end").style.display = "none";
+        customBeginBrace.style.display = "none";
+        customEndBrace.style.display = "none";
       }
     };
     
@@ -90,6 +99,13 @@
           prefix.value = "";
           break;
       }
+    };
+    
+    document.querySelector("button").onclick = () => {
+    
+      const p = document.querySelector("p");
+      
+      p.innerText = selectBraces === "other" ?  : selectBraces.value[0];
     };
   };
 </script>
