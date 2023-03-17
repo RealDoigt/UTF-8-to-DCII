@@ -9,6 +9,8 @@
 
 <textarea></textarea>
 
+<span>braces:</span>
+
 <select name="braces" id="braces">
 
     <option value="none">none</option>
@@ -21,6 +23,20 @@
 
 <input class="other" type="text" id="other-begin" placeholder="begin"/>
 <input class="other" type="text" id="other-end" placeholder="end"/>
+<br/>
+
+<span>base:</span>
+
+<select name="base" id="base">
+
+    <option value="decimal">decimal</option>
+    <option value="hexadecimal">hexadecimal</option>
+    <option value="binary">binary</option>
+    <option value="octal">octal</option>
+</select>
+
+<input type="text" id="prefix" placeholder="prefix"/>
+<input type="text" id="prefix" placeholder="suffix"/>
 
 <button>to DNCII</button>
 
@@ -30,6 +46,8 @@
   window.onload = () => {
     
     const selectBraces = document.getElementById("braces");
+    const selectBase = document.getElementById("base");
+    
     selectBraces.onchange = () => {
       
       if (selectBraces.value === "other") {
@@ -42,6 +60,34 @@
         
         document.getElementById("other-begin").style.display = "none";
         document.getElementById("other-end").style.display = "none";
+      }
+    };
+    
+    selectBase.onchange = () => {
+      
+      const prefix = document.getElementById("prefix");
+      
+      switch (selectBase.value) {
+        
+        case "hexadecimal":
+          
+          prefix.value = "0x";
+          break;
+        
+        case "binary":
+        
+          prefix.value = "0b";
+          break;
+          
+        case "octal":
+        
+          prefix.value = "0";
+          break;
+          
+        default:
+        
+          prefix.value = "";
+          break;
       }
     };
   };
