@@ -1,8 +1,10 @@
 <meta charset="utf-8"/>
 <title>UTF-8 to DCII</title>
+
 <style> 
-select, textarea, button { display: block; }
-#other-begin, #other-end { display: none; }
+
+  select, textarea, button { display: block; }
+  .other { display: none; }
 </style>
 
 <textarea></textarea>
@@ -17,14 +19,30 @@ select, textarea, button { display: block; }
     <option value="other">other</option>
 </select>
 
-<input type="text" id="other-begin" placeholder="begin"/>
-<input type="text" id="other-end" placeholder="end"/>
+<input class="other" type="text" id="other-begin" placeholder="begin"/>
+<input class="other" type="text" id="other-end" placeholder="end"/>
 
 <button>to DNCII</button>
 
 
 <script>
   
-  
-  
+  window.onload = () => {
+    
+    const selectBraces = document.getElementById("braces");
+    selectBraces.onchange = () => {
+      
+      if (selectBraces.value === "other") {
+        
+        document.getElementById("other-begin").style.display = "inline";
+        document.getElementById("other-end").style.display = "inline";
+      }
+      
+      else {
+        
+        document.getElementById("other-begin").style.display = "none";
+        document.getElementById("other-end").style.display = "none";
+      }
+    };
+  };
 </script>
