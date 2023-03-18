@@ -44,6 +44,11 @@
 
 <span>delimiter:</span>
 <input type="text" id="delimiter" placeholder="delimiter" value=", "/>
+<br/>
+<br/>
+
+<span>generate null terminator:</span>
+<input type="checkbox" id="null"/>
 <button>to DCII</button>
 <br/>
 
@@ -515,11 +520,16 @@
             break;
         }
         
+        // I know, the code below violates dry. Send a pr if you want it fixed!
         if (numb !== "")
           p.innerText += `${prefix}${numb}${suffix}${delimiter}`;
           
         p.innerText += `${prefix}${num}${suffix}${delimiter}`;
       });
+      
+      if (+document.getElementById("null").checked)
+        p.innerText += `${prefix}0${suffix}`; 
+        
       
       if (selectBraces.value !== "none")
         p.innerText += selectBraces.value === "other" ? customEndBrace.value : selectBraces.value[1];
