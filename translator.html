@@ -515,11 +515,14 @@
             break;
         }
         
-        p.innerText += `${prefix}${num}${suffix}${delimiter}`;
-        
         if (numb !== "")
           p.innerText += `${prefix}${numb}${suffix}${delimiter}`;
+          
+        p.innerText += `${prefix}${num}${suffix}${delimiter}`;
       });
+      
+      if (selectBraces.value !== "none")
+        p.innerText = 
     };
   };
 </script>
