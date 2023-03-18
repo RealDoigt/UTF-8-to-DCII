@@ -4,7 +4,7 @@
 <style> 
 
   select, textarea, button { display: block; }
-  .other { display: none; }
+  .other, #size { display: none; }
 </style>
 
 <span>source text:</span>
@@ -49,6 +49,22 @@
 
 <span>generate null terminator:</span>
 <input type="checkbox" id="null"/>
+<br/>
+<br/>
+
+<span>combine bytes:</span>
+<input type="checkbox" id="combine"/>
+<select name="size" id="size">
+
+    <option value="16">16-bit unsigned integer</option>
+    <option value="32">32-bit unsigned integer</option>
+    <!-- concerning gcos8 and other such machines with odd word sizes -->
+    <option value="18">18-bit unsigned integer</option>
+    <option value="36">36-bit unsigned integer</option>
+</select>
+<br/>
+<br/>
+
 <button>to DCII</button>
 <br/>
 
@@ -428,6 +444,8 @@
     const customEndBrace = document.getElementById("other-end");
     const selectBraces = document.getElementById("braces");
     const selectBase = document.getElementById("base");
+    const selectSize = document.getElementById("size");
+    const combine = document.getElementById("combine");
     
     selectBraces.onchange = () => {
       
@@ -470,6 +488,12 @@
           prefix.value = "";
           break;
       }
+    };
+    
+    combine.onchange = () => {
+    
+      if (combine.checked) size.style.display = "inherit";
+      else size.style.display = "none";
     };
     
     document.querySelector("button").onclick = () => {
