@@ -521,28 +521,29 @@
       if (selectBraces.value !== "none")
         p.innerText = selectBraces.value === "other" ? customBeginBrace.value : selectBraces.value[0];
       
-      txt.forEach(char => {
-        
-        let num = 255;
-        let numb = "";
-        
-        if (char in charTable) num = charTable[char];
-        
-        if (num >= 1000) {
+      if (!combined.checked)
+        txt.forEach(char => {
           
-          num /= 1000;
-          numb = 2;
+          let num = 255;
+          let numb = "";
+          
+          if (char in charTable) num = charTable[char];
+          
+          if (num >= 1000) {
+            
+            num /= 1000;
+            numb = 2;
+          }
+          
+          if (numb !== "")
+            p.innerText += getFormattedNumber(getSelectedBase(numb, selectBase.value));
+            
+          p.innerText += getFormattedNumber(getSelectedBase(num, selectBase.value));
+        });
+        
+      else
+        for (let i = 0; i < txt.length; ++i) {
         }
-        
-        // note: toString(<n>) doesn't care if the param is an empty string, which is why this works
-        num = getSelectedBase(num, selectBase.value);
-        numb = getSelectedBase(numb, selectBase.value);
-        
-        if (numb !== "")
-          p.innerText += getFormattedNumber(numb);
-          
-        p.innerText += getFormattedNumber(num);
-      });
       
       if (+document.getElementById("null").checked)
         p.innerText += getFormattedNumber("0", ""); 
