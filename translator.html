@@ -38,12 +38,12 @@
 </select>
 
 <input type="text" id="prefix" placeholder="prefix"/>
-<input type="text" id="prefix" placeholder="suffix"/>
+<input type="text" id="suffix" placeholder="suffix"/>
 <br/>
 <br/>
 
 <span>delimiter:</span>
-<input type="text" id="prefix" placeholder="delimiter" value=", "/>
+<input type="text" id="delimiter" placeholder="delimiter" value=", "/>
 <button>to DNCII</button>
 <br/>
 
@@ -51,7 +51,7 @@
 
 <script>
 
-  const conversionTable = {
+  const charTable = {
     
     "\n": 1,
     " ": 3,
@@ -472,9 +472,28 @@
       const p = document.querySelector("p");
       const txt = Array.from(document.querySelector("textarea").value);
       
-      p.innerText = selectBraces.value === "other" ? customBeginBrace.value : selectBraces.value[0];
+      const prefix = document.getElementById("prefix").value;
+      const suffix = document.getElementById("suffix").value;
       
-      text.forEach(char => {
+      const delimiter = document.getElementById("delimiter").value;
+      
+      if (selectBraces.value !== "none")
+        p.innerText = selectBraces.value === "other" ? customBeginBrace.value : selectBraces.value[0];
+      
+      txt.forEach(char => {
+        
+        let num = 255;
+        let numb = undefined;
+        
+        if (char in charTable) num = charTable[char];
+        
+        if (num >= 1000) {
+          
+          num /= 1000;
+          numb = 2;
+        }
+        
+        
       });
     };
   };
