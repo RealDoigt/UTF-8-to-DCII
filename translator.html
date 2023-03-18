@@ -58,9 +58,6 @@
 
     <option value="16">16-bit unsigned integer</option>
     <option value="32">32-bit unsigned integer</option>
-    <!-- concerning gcos8 and other such machines with odd word sizes -->
-    <option value="18">18-bit unsigned integer</option>
-    <option value="36">36-bit unsigned integer</option>
 </select>
 <br/>
 <br/>
@@ -492,12 +489,12 @@
     
     combine.onchange = () => {
     
-      if (combine.checked) size.style.display = "inherit";
-      else size.style.display = "none";
+      if (combine.checked) selectSize.style.display = "inherit";
+      else selectSize.style.display = "none";
     };
     
     document.querySelector("button").onclick = () => {
-    
+      
       const p = document.querySelector("p");
       const txt = Array.from(document.querySelector("textarea").value);
       
@@ -521,7 +518,7 @@
       if (selectBraces.value !== "none")
         p.innerText = selectBraces.value === "other" ? customBeginBrace.value : selectBraces.value[0];
       
-      if (!combined.checked)
+      if (!combine.checked)
         txt.forEach(char => {
           
           let num = 255;
@@ -542,8 +539,11 @@
         });
         
       else
-        for (let i = 0; i < txt.length; ++i) {
-        }
+        for (let i = 0; i < txt.length; ++i)
+          for (let j = 0; j < +selectSize.value; j += 8) {
+          
+          
+          }
       
       if (+document.getElementById("null").checked)
         p.innerText += getFormattedNumber("0", ""); 
