@@ -483,7 +483,7 @@
       txt.forEach(char => {
         
         let num = 255;
-        let numb = undefined;
+        let numb = "";
         
         if (char in charTable) num = charTable[char];
         
@@ -493,7 +493,32 @@
           numb = 2;
         }
         
+        // note: toString(<n>) doesn't care if the param is an empty string, which is why this works
+        switch (selectBase.value){
+          
+          case "hexadecimal":
+          
+            num = num.toString(16);
+            numb = numb.toString(16);
+            break;
+            
+          case "binary":
+          
+            num = num.toString(2);
+            numb = numb.toString(2);
+            break;
+            
+          case "octal":
+          
+            num = num.toString(8);
+            numb = numb.toString(8);
+            break;
+        }
         
+        p.innerText += `${prefix}${num}${suffix}${delimiter}`;
+        
+        if (numb !== "")
+          p.innerText += `${prefix}${numb}${suffix}${delimiter}`;
       });
     };
   };
