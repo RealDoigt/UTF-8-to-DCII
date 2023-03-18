@@ -58,6 +58,7 @@
 
     <option value="16">16-bit unsigned integer</option>
     <option value="32">32-bit unsigned integer</option>
+    <option value="64">64-bit unsigned integer</option>
 </select>
 <br/>
 <br/>
@@ -538,12 +539,40 @@
           p.innerText += getFormattedNumber(getSelectedBase(num, selectBase.value));
         });
         
-      else
-        for (let i = 0; i < txt.length; ++i)
-          for (let j = 0; j < +selectSize.value; j += 8) {
-          
-          
+      else {
+      
+        values = [];
+        
+        txt.forEach(char => {
+        
+          if (char in charTable) {
+            
+            const num = charTable[char];
+            
+            if (num >= 1000) {
+              
+              values.push(2);
+              values.push(num / 1000)
+            }
+            
+            else values.push(num);
           }
+          
+          else values.push(255);
+        });
+        
+        values.forEach(val => {
+        
+          for (let i = 0, nCombined = 0; i < +selectSize.value; i += 8) {
+            
+            nCombined |= val << i;
+            console.log(val /*+ ":" + nCombined*/);
+            
+            if (i + 8 === +selectSize.value)
+              p.innerText += getFormattedNumber(getSelectedBase(nCombined, selectBase.value));
+          }
+        });
+      }
       
       if (+document.getElementById("null").checked)
         p.innerText += getFormattedNumber("0", ""); 
