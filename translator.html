@@ -506,6 +506,18 @@
       
       const delimiter = document.getElementById("delimiter").value;
       
+      const getFormattedNumber = (n, d=delimiter) => `${prefix}${n}${suffix}${d}`;
+      const getSelectedBase = (n, v) => {
+      
+        switch (v) {
+          
+          case "hexadecimal": return n.toString(16);
+          case "binary": return n.toString(2);
+          case "octal": return n.toString(8);
+          default: return n.toString();
+        }
+      };
+      
       if (selectBraces.value !== "none")
         p.innerText = selectBraces.value === "other" ? customBeginBrace.value : selectBraces.value[0];
       
@@ -523,37 +535,17 @@
         }
         
         // note: toString(<n>) doesn't care if the param is an empty string, which is why this works
-        switch (selectBase.value){
-          
-          case "hexadecimal":
-          
-            num = num.toString(16);
-            numb = numb.toString(16);
-            break;
-            
-          case "binary":
-          
-            num = num.toString(2);
-            numb = numb.toString(2);
-            break;
-            
-          case "octal":
-          
-            num = num.toString(8);
-            numb = numb.toString(8);
-            break;
-        }
+        num = getSelectedBase(num, selectBase.value);
+        numb = getSelectedBase(numb, selectBase.value);
         
-        // I know, the code below violates dry. Send a pr if you want it fixed!
         if (numb !== "")
-          p.innerText += `${prefix}${numb}${suffix}${delimiter}`;
+          p.innerText += getFormattedNumber(numb);
           
-        p.innerText += `${prefix}${num}${suffix}${delimiter}`;
+        p.innerText += getFormattedNumber(num);
       });
       
       if (+document.getElementById("null").checked)
-        p.innerText += `${prefix}0${suffix}`; 
-        
+        p.innerText += getFormattedNumber("0", ""); 
       
       if (selectBraces.value !== "none")
         p.innerText += selectBraces.value === "other" ? customEndBrace.value : selectBraces.value[1];
