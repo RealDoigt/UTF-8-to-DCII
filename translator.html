@@ -565,12 +565,12 @@
           for (let j = 0, nCombined = 0; j < +selectSize.value; j += 8) {
             
             val = values[i++];
-            if (i >= values.length) break;
-            
             nCombined |= val << j;
             
-            if (j + 8 === +selectSize.value)
+            if (j + 8 === +selectSize.value || i >= values.length)
               p.innerText += getFormattedNumber(getSelectedBase(nCombined, selectBase.value));
+              
+            if (i >= values.length) break;
           }
       }
       
