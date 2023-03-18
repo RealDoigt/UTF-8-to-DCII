@@ -561,17 +561,17 @@
           else values.push(255);
         });
         
-        values.forEach(val => {
-        
-          for (let i = 0, nCombined = 0; i < +selectSize.value; i += 8) {
+        for (i = 0; i < values.length;)
+          for (let j = 0, nCombined = 0; j < +selectSize.value; j += 8) {
             
-            nCombined |= val << i;
-            console.log(val /*+ ":" + nCombined*/);
+            val = values[i++];
+            if (i >= values.length) break;
             
-            if (i + 8 === +selectSize.value)
+            nCombined |= val << j;
+            
+            if (j + 8 === +selectSize.value)
               p.innerText += getFormattedNumber(getSelectedBase(nCombined, selectBase.value));
           }
-        });
       }
       
       if (+document.getElementById("null").checked)
