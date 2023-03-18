@@ -50,6 +50,222 @@
 <p></p>
 
 <script>
+
+  const conversionTable = {
+    
+    Next Line
+    Space
+    !
+    #
+    '
+    ( or [
+    ) or ]
+    *
+    +
+    ,
+    -
+    .
+    /
+    :
+    ;
+    ?
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    a or A
+    b or B
+    c or C
+    d or D
+    e or E
+    f or F
+    g or G
+    h or H
+    i or I
+    j or J
+    k or K
+    l or L
+    m or M
+    n or N
+    o or O
+    p or P
+    q or Q
+    r or R
+    s or S
+    t or T
+    u or U
+    v or V
+    w or W
+    x or X
+    y or Y
+    z or Z
+    ア or あ
+    イ or い
+    ウ or う
+    エ or え
+    オ or お
+    カ or か
+    キ or き
+    ク or く
+    ケ or け
+    コ or こ
+    サ or さ
+    シ or し
+    ス or す
+    セ or せ
+    ソ or そ
+    タ or た
+    チ or ち
+    ツ or つ
+    テ or て
+    ト or と
+    ナ or な
+    ニ or に
+    ヌ or ぬ
+    ネ or ね
+    ノ or の
+    ハ or は
+    ヒ or ひ
+    フ or ふ
+    ヘ
+    ホ or ほ
+    マ or ま
+    ミ or み
+    ム or む
+    メ or め
+    モ or も
+    ヤ or や
+    ユ or ゆ
+    ヨ or よ
+    ラ or ら
+    リ or り
+    ル or る
+    レ or れ
+    ロ or ろ
+    ワ or わ
+    ヰ
+    ヱ
+    ヲ or を
+    ン or ん
+    б or Б
+    в or В
+    д or Д
+    ж or Ж
+    з or З
+    и or И
+    л or Л
+    м or М
+    н or Н
+    п or П
+    у or У
+    ф or Ф
+    ц or Ц
+    ч or Ч
+    ш or Ш
+    щ or Щ
+    ъ or Ъ
+    ы or Ы
+    ь or Ь
+    э or Э
+    ю or Ю
+    я or Я
+    β or Β
+    γ or Γ
+    δ or Δ
+    ζ or Ζ
+    η or Η
+    θ or Θ
+    ι or Ι
+    λ or Λ
+    μ or Μ
+    ν or Ν
+    ξ or Ξ
+    π or Π
+    σ or Σ
+    τ or Τ
+    υ or Υ
+    φ or Φ
+    χ or Χ
+    ψ or Ψ
+    ω or Ω
+    ა
+    ბ
+    გ
+    დ
+    ე
+    ვ
+    ზ
+    თ
+    ი
+    ლ
+    მ
+    ნ
+    ო
+    პ
+    ჟ
+    რ
+    ს
+    ტ
+    უ
+    ფ
+    ქ
+    ღ
+    ყ
+    შ
+    ჩ
+    ც
+    ძ
+    წ
+    ჭ
+    ხ
+    ჯ
+    ჰ
+    ա or Ա
+    բ or Բ
+    գ or Գ
+    դ or Դ
+    ե or Ե
+    զ or Զ
+    է or Է
+    Ը or ը
+    թ or Թ
+    ժ or Ժ
+    ի or Ի
+    լ or Լ
+    խ or Խ
+    ծ or Ծ
+    կ or Կ
+    հ or Հ
+    ձ or Ձ
+    ղ or Ղ
+    ճ or Ճ
+    մ or Մ
+    յ or Յ
+    ն or Ն
+    շ or Շ
+    ո or Ո
+    չ or Չ
+    պ or Պ
+    ջ or Ջ
+    ռ or Ռ
+    ս or Ս
+    վ or Վ
+    տ or Տ
+    ր or Ր
+    ց or Ց
+    ւ or Ւ
+    փ or Փ
+    ք or Ք
+    ֆ or Ֆ
+    ու
+    և
+  };
   
   window.onload = () => {
     
@@ -104,8 +320,12 @@
     document.querySelector("button").onclick = () => {
     
       const p = document.querySelector("p");
+      const txt = Array.from(document.querySelector("textarea").value);
       
       p.innerText = selectBraces.value === "other" ? customBeginBrace.value : selectBraces.value[0];
+      
+      text.forEach(char => {
+      });
     };
   };
 </script>
